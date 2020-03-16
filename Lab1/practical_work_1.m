@@ -191,7 +191,7 @@ for i =1:4
     figure(1);
     subplot(2,2,i);
     showMatchedFeatures(original_img_gray,disorted_img,matchedPoints1,matchedPoints2);
-    title(['Candidate matched points (Rotation= ' num2str(theta(i)) 'บ)'])
+    title(['Candidate matched points (Rotation= ' num2str(theta(i)) 'ยบ)'])
     sgtitle('SURF Feature Detection and Feature Extraction method (ROTATION)')
 
 
@@ -216,7 +216,7 @@ for i =1:4
     figure(2)
     subplot(2,2,i)
     showMatchedFeatures(original_img_gray,disorted_img,inlierOriginal,inlierDistorted)
-    title(['Matching points (Rotation=' num2str(theta(i)) 'บ)'])
+    title(['Matching points (Rotation=' num2str(theta(i)) 'ยบ)'])
     legend('ptsOriginal','ptsDistorted')
     sgtitle('SURF Feature Detection and Feature Extraction method (ROTATION)')
 
@@ -229,7 +229,7 @@ for i =1:4
     figure(3)
     subplot(2,2,i)
     imshowpair(original_img_gray,recovered,'montage')
-    title(['Compare Original img vs Recovered img (Rotation = ' num2str(theta(i)) 'บ)'])
+    title(['Compare Original img vs Recovered img (Rotation = ' num2str(theta(i)) 'ยบ)'])
     sgtitle('SURF Feature Detection and Feature Extraction method (ROTATION)')
 
 
