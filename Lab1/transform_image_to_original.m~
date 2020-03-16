@@ -4,7 +4,7 @@ function [T] = transform_image_to_original(I1,I2, keypoints1, keypoints2)
     [featuresOriginal,validPtsOriginal] = extractFeatures(I1, keypoints1);
     [featuresDistorted,validPtsDistorted] = extractFeatures(I2,keypoints2);
 
-    indexPairs = matchFeatures(featuresOriginal,featuresDistorted, 'MatchThreshold', 0.3, 'MaxRatio', 0.6, 'Unique', true);
+    indexPairs = matchFeatures(featuresOriginal,featuresDistorted, MatchThreshold , 'MaxRatio', 0.6, 'Unique', true);
     size(indexPairs)
     matchedPoints1 = validPtsOriginal(indexPairs(:,1),:);
     matchedPoints2 = validPtsDistorted(indexPairs(:,2),:);
