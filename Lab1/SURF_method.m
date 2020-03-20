@@ -1,4 +1,4 @@
-function SURF_method(original_img_gray, disorted_img, tform_type,variable,str,i)
+function  [kp1,kp2,matches,matched_ratio] = SURF_method(original_img_gray, disorted_img, tform_type,variable,str,i)
  %  Detect matching features between the original and distorted image
     
     % 1) Detect SURF features in original and rotated image
@@ -13,14 +13,20 @@ function SURF_method(original_img_gray, disorted_img, tform_type,variable,str,i)
     
     [f1,vpts1] = extractFeatures(original_img_gray,ptsOriginal,'Method','SURF');
     [f2,vpts2] = extractFeatures(disorted_img,ptsDistorted,'Method','SURF');
+    kp1 = length(vpts1);
+    kp2 = length(vpts2);
    
 
     % 3) Find candidate matches: Remeber! Two patches that match can indicate like features but might not be a correct match.
-    indexPairs = matchFeatures(f1,f2) ;
+    indexPairs = matchFeatures(f1,f2,'MatchThreshold',40,'MaxRatio',0.8)
+   % 'MatchThreshold',40,'MaxRatio',0.8
+    matches = length(indexPairs);
     
     % 4) Find point locations from both images: retrieve the locations of the matched points
     matchedPoints1 = vpts1(indexPairs(:,1));
     matchedPoints2 = vpts2(indexPairs(:,2));
+    
+    matched_ratio = matches/((kp1 + kp2)/2)
 
     % Display the candidate matches
     figure(1);
@@ -61,3 +67,4 @@ function SURF_method(original_img_gray, disorted_img, tform_type,variable,str,i)
     sgtitle(['SURF Feature Detection and Feature Extraction method (',str,')'])
     
 end
+
